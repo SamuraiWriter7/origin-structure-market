@@ -1,0 +1,110 @@
+origin_audit_record:
+  id: audit-2026-0001
+  target_asset_id: derivative-2026-0001
+  target_asset_type: derivative_asset
+  auditor: SamuraiWriter7
+  audit_method: hybrid_review
+  timestamp: "2026-06-22T00:00:00Z"
+  version: v0.3.0-candidate
+
+  audit_scope:
+    - derivative_claim
+    - origin_similarity
+    - structural_similarity
+    - conceptual_similarity
+    - contribution_score
+    - royalty_relevance
+    - human_review_boundary
+
+  compared_assets:
+    - asset_id: origin-2026-0001
+      asset_type: origin_asset
+      title: Origin Structure Market
+      relationship_claim: direct_origin
+
+  similarity:
+    lexical_similarity: 0.32
+    structural_similarity: 0.82
+    conceptual_similarity: 0.88
+    lineage_similarity: 0.91
+    workflow_similarity: 0.76
+    overall_similarity: 0.84
+
+  judgment:
+    likely_derivative: true
+    confidence: 0.86
+    contribution_scores:
+      origin-2026-0001: 0.45
+    royalty_relevance: high
+    status: requires_human_review
+    summary: >
+      The target derivative asset appears to be strongly derived from the
+      Origin Structure Market framework. The derivative preserves the upstream
+      concepts of origin asset registration, structural fingerprinting,
+      traceable contribution, permission layers, royalty policies, and lineage
+      records while transforming them into a GPT-oriented generation workflow.
+
+  evidence:
+    shared_concepts:
+      - origin asset
+      - structural fingerprint
+      - traceable contribution
+      - royalty allocation
+      - value returned to origin
+      - derivative lineage
+      - permission layer
+      - human review boundary
+
+    shared_structure:
+      - origin registration
+      - upstream asset reference
+      - contribution claim
+      - transformation type declaration
+      - trace evidence
+      - proposed royalty split
+      - human review status
+
+    differentiating_factors:
+      - The target asset is packaged as a GPT-oriented workflow rather than a general protocol overview.
+      - The target asset focuses on generating origin asset records, examples, and trace metadata.
+      - The target asset operationalizes the upstream framework for practical registration assistance.
+
+    trace_references:
+      - https://github.com/SamuraiWriter7/origin-structure-market
+      - https://siba834.hatenablog.com/
+
+    evidence_hashes:
+      - sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
+  audit_notes: >
+    This audit record is provisional. The similarity scores and contribution
+    score are intended as structured audit claims, not final legal or economic
+    judgments. Human review is required before these values are used for
+    binding royalty allocation.
+
+  human_review:
+    required: true
+    status: pending
+    reviewer: protocol-maintainer
+    notes: >
+      Human review is required before accepting the derivative likelihood,
+      contribution score, and royalty relevance as final.
+
+  trace:
+    source_url: https://github.com/SamuraiWriter7/origin-structure-market
+    repository_url: https://github.com/SamuraiWriter7/origin-structure-market
+    related_assets:
+      - origin-2026-0001
+      - derivative-2026-0001
+      - ai-search-trace-receipt-standard
+      - synchronization-audit-protocol
+      - compute-access-royalty-os
+      - okf-royalty-os-bridge
+      - kazene-trace-receipt-protocol
+
+  notes: >
+    This example demonstrates the v0.3 Origin Audit Record layer. It evaluates
+    a derivative claim between an upstream Origin Asset and a downstream
+    Derivative Asset, records multidimensional similarity scores, proposes a
+    contribution score, marks royalty relevance, and preserves a human review
+    boundary.
