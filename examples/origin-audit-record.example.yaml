@@ -76,11 +76,11 @@ origin_audit_record:
     evidence_hashes:
       - sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 
-  audit_notes: >
-    This audit record is provisional. The similarity scores and contribution
-    score are intended as structured audit claims, not final legal or economic
-    judgments. Human review is required before these values are used for
-    binding royalty allocation.
+    audit_notes: >
+      This audit record is provisional. The similarity scores and contribution
+      score are intended as structured audit claims, not final legal or economic
+      judgments. Human review is required before these values are used for
+      binding royalty allocation.
 
   human_review:
     required: true
@@ -108,3 +108,4 @@ origin_audit_record:
     Derivative Asset, records multidimensional similarity scores, proposes a
     contribution score, marks royalty relevance, and preserves a human review
     boundary.
+
