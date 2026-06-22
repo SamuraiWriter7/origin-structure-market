@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Validate example YAML files against their corresponding JSON Schemas.
-Supports both Origin Asset and Derivative Asset examples.
+Supports Origin Asset, Derivative Asset, and Origin Audit Record.
 """
 
 from pathlib import Path
@@ -29,6 +29,11 @@ VALIDATION_TARGETS = [
         "name": "Derivative Asset",
         "schema": ROOT / "schemas" / "derivative-asset.schema.json",
         "example": ROOT / "examples" / "derivative-asset.example.yaml",
+    },
+    {
+        "name": "Origin Audit Record",
+        "schema": ROOT / "schemas" / "origin-audit-record.schema.json",
+        "example": ROOT / "examples" / "origin-audit-record.example.yaml",
     },
 ]
 
