@@ -1,0 +1,86 @@
+derivative_asset:
+  id: derivative-2026-0001
+  title: Origin Asset Generator GPT
+  creator: SamuraiWriter7
+  asset_type: gpt_instruction
+
+  description: >
+    Origin Asset Generator GPT is a derivative asset based on the Origin
+    Structure Market framework. It transforms the upstream Origin Asset
+    registration concept into a practical GPT instruction and workflow for
+    generating machine-readable origin asset records, YAML examples, and
+    trace-ready metadata for future registration.
+
+  timestamp: "2026-06-22T00:00:00Z"
+  version: v0.2.0-candidate
+
+  derived_from:
+    - asset_id: origin-2026-0001
+      asset_role: origin
+      title: Origin Structure Market
+      contribution_claim: 0.45
+
+  transformation_type:
+    - gpt_instruction
+    - workflow_expansion
+    - schema_application
+    - marketplace_packaging
+
+  evidence:
+    shared_concepts:
+      - origin asset
+      - structural fingerprint
+      - traceable contribution
+      - royalty allocation
+      - value returned to origin
+
+    shared_structure:
+      - origin registration
+      - permission layer
+      - royalty policy layer
+      - trace link layer
+      - derivative lineage graph
+
+    evidence_hashes:
+      - sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+
+  output:
+    asset_type: custom_gpt
+    commercial_use: true
+    distribution_channel: gpt_store
+    canonical_hash: sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
+  proposed_royalty_split:
+    final_creator: 0.85
+    origin_creator: 0.05
+    derivative_creator: 0.07
+    auditor: 0.02
+    protocol_fund: 0.01
+    settlement: hybrid
+
+  trace:
+    source_url: https://github.com/SamuraiWriter7/origin-structure-market
+    repository_url: https://github.com/SamuraiWriter7/origin-structure-market
+    article_url: https://siba834.hatenablog.com/
+
+    related_assets:
+      - origin-2026-0001
+      - ai-search-trace-receipt-standard
+      - synchronization-audit-protocol
+      - compute-access-royalty-os
+      - okf-royalty-os-bridge
+      - kazene-trace-receipt-protocol
+
+  human_review:
+    required: true
+    status: pending
+    reviewer: protocol-maintainer
+    notes: >
+      Human review is required before accepting the derivative contribution
+      claim and proposed royalty split as final.
+
+  notes: >
+    This example demonstrates the v0.2 Derivative Asset Registration layer.
+    It records how a new GPT-oriented asset can declare its upstream origin,
+    transformation type, contribution claim, output form, proposed royalty
+    split, and trace evidence.
