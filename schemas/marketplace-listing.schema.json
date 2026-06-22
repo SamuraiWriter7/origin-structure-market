@@ -1,0 +1,535 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://samuraiwriter7.github.io/origin-structure-market/schemas/marketplace-listing.schema.json",
+"title": "Marketplace Listing",
+"description": "A machine-readable marketplace listing record for publishing, licensing, discovering, and monetizing origin assets, derivative assets, and related structural products in the Origin Structure Market.",
+"type": "object",
+"required": [
+"marketplace_listing"
+],
+"additionalProperties": false,
+"properties": {
+"marketplace_listing": {
+"type": "object",
+"required": [
+"id",
+"title",
+"listing_type",
+"listed_asset",
+"summary",
+"timestamp",
+"status",
+"pricing",
+"license",
+"royalty",
+"discovery",
+"human_review",
+"trace"
+],
+"additionalProperties": false,
+"properties": {
+"id": {
+"type": "string",
+"description": "A unique identifier for the marketplace listing.",
+"pattern": "^listing-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"listing-2026-0001"
+]
+},
+"title": {
+"type": "string",
+"description": "Human-readable title of the marketplace listing.",
+"minLength": 1,
+"maxLength": 200
+},
+"listing_type": {
+"type": "string",
+"description": "Category of the marketplace listing.",
+"enum": [
+"origin_asset",
+"derivative_asset",
+"gpt_instruction",
+"prompt_pack",
+"schema",
+"workflow",
+"article_framework",
+"book_framework",
+"software_tool",
+"business_model",
+"license_offer",
+"royalty_bundle",
+"other"
+]
+},
+"listed_asset": {
+"type": "object",
+"description": "Asset being listed on the marketplace.",
+"required": [
+"asset_id",
+"asset_type"
+],
+"additionalProperties": false,
+"properties": {
+"asset_id": {
+"type": "string",
+"description": "Identifier of the listed asset.",
+"pattern": "^(origin|derivative|product|allocation)-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"derivative-2026-0001"
+]
+},
+"asset_type": {
+"type": "string",
+"description": "Type of the listed asset.",
+"enum": [
+"origin_asset",
+"derivative_asset",
+"final_product",
+"royalty_bundle",
+"other"
+]
+},
+"version": {
+"type": "string",
+"description": "Optional version of the listed asset.",
+"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"examples": [
+"v0.5.0-candidate"
+]
+},
+"canonical_hash": {
+"type": "string",
+"description": "Optional hash of the canonical listed asset.",
+"pattern": "^sha256:[a-fA-F0-9]{64}$"
+}
+}
+},
+"summary": {
+"type": "string",
+"description": "Short marketplace-facing summary of the listing.",
+"minLength": 1,
+"maxLength": 2000
+},
+"description": {
+"type": "string",
+"description": "Longer description of the listing, use cases, and buyer value.",
+"maxLength": 6000
+},
+"timestamp": {
+"type": "string",
+"description": "Timestamp when the marketplace listing was created.",
+"format": "date-time"
+},
+"version": {
+"type": "string",
+"description": "Version of this marketplace listing record.",
+"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"examples": [
+"0.5.0",
+"v0.5.0-candidate"
+]
+},
+"status": {
+"type": "string",
+"description": "Current marketplace status of the listing.",
+"enum": [
+"draft",
+"pending_review",
+"active",
+"paused",
+"sold_out",
+"archived",
+"rejected",
+"disputed"
+]
+},
+"pricing": {
+"type": "object",
+"description": "Pricing and commercial access model for the listing.",
+"required": [
+"pricing_model",
+"currency"
+],
+"additionalProperties": false,
+"properties": {
+"pricing_model": {
+"type": "string",
+"description": "Pricing model for the listing.",
+"enum": [
+"free",
+"one_time_purchase",
+"subscription",
+"license_fee",
+"revenue_share",
+"quote_required",
+"hybrid"
+]
+},
+"amount": {
+"type": "number",
+"description": "Listed price amount, if applicable.",
+"minimum": 0
+},
+"currency": {
+"type": "string",
+"description": "Currency used for the listing price.",
+"pattern": "^[A-Z]{3}$",
+"examples": [
+"JPY",
+"USD"
+]
+},
+"billing_period": {
+"type": "string",
+"description": "Billing period for subscription-based listings.",
+"enum": [
+"none",
+"monthly",
+"yearly",
+"per_use",
+"custom"
+]
+},
+"revenue_share_rate": {
+"type": "number",
+"description": "Revenue share rate requested from downstream commercial use, if applicable.",
+"minimum": 0,
+"maximum": 1
+},
+"notes": {
+"type": "string",
+"description": "Optional pricing notes.",
+"maxLength": 2000
+}
+}
+},
+"license": {
+"type": "object",
+"description": "License and usage terms for the marketplace listing.",
+"required": [
+"license_name",
+"commercial_use",
+"derivative_allowed",
+"attribution_required"
+],
+"additionalProperties": false,
+"properties": {
+"license_name": {
+"type": "string",
+"description": "Name of the license or usage agreement.",
+"minLength": 1,
+"maxLength": 200,
+"examples": [
+"Kazene-Origin-Market-License-0.5"
+]
+},
+"license_url": {
+"type": "string",
+"description": "Optional URL to the license text.",
+"format": "uri"
+},
+"commercial_use": {
+"type": "boolean",
+"description": "Whether commercial use is allowed."
+},
+"derivative_allowed": {
+"type": "boolean",
+"description": "Whether derivative works are allowed."
+},
+"attribution_required": {
+"type": "boolean",
+"description": "Whether attribution is required."
+},
+"ai_training_allowed": {
+"type": "boolean",
+"description": "Whether the listed asset may be used for AI training."
+},
+"ai_inference_allowed": {
+"type": "boolean",
+"description": "Whether the listed asset may be used during AI inference or agent workflows."
+},
+"redistribution_allowed": {
+"type": "boolean",
+"description": "Whether redistribution of the listed asset is allowed."
+},
+"restrictions": {
+"type": "array",
+"description": "Optional restrictions on usage.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+}
+}
+},
+"royalty": {
+"type": "object",
+"description": "Royalty and allocation references associated with the listing.",
+"required": [
+"royalty_required",
+"allocation_mode"
+],
+"additionalProperties": false,
+"properties": {
+"royalty_required": {
+"type": "boolean",
+"description": "Whether downstream use requires royalty allocation."
+},
+"allocation_mode": {
+"type": "string",
+"description": "How royalties should be allocated.",
+"enum": [
+"none",
+"declared_split",
+"audit_based",
+"royalty_allocation_graph",
+"contract_based",
+"marketplace_policy",
+"hybrid"
+]
+},
+"royalty_allocation_graph_id": {
+"type": "string",
+"description": "Optional Royalty Allocation Graph associated with this listing.",
+"pattern": "^allocation-[0-9]{4}-[0-9]{4,}$"
+},
+"default_origin_rate": {
+"type": "number",
+"description": "Default royalty rate reserved for origin creators, if applicable.",
+"minimum": 0,
+"maximum": 1
+},
+"default_derivative_rate": {
+"type": "number",
+"description": "Default royalty rate reserved for derivative creators, if applicable.",
+"minimum": 0,
+"maximum": 1
+},
+"protocol_fund_rate": {
+"type": "number",
+"description": "Default royalty rate reserved for protocol maintenance or commons funding.",
+"minimum": 0,
+"maximum": 1
+},
+"notes": {
+"type": "string",
+"description": "Optional royalty notes.",
+"maxLength": 2000
+}
+}
+},
+"discovery": {
+"type": "object",
+"description": "Search, categorization, and discovery metadata for the listing.",
+"required": [
+"categories",
+"tags"
+],
+"additionalProperties": false,
+"properties": {
+"categories": {
+"type": "array",
+"description": "Marketplace categories for the listing.",
+"minItems": 1,
+"items": {
+"type": "string",
+"enum": [
+"ai_prompt",
+"gpt_instruction",
+"schema",
+"workflow",
+"royalty_template",
+"origin_audit",
+"article_framework",
+"book_framework",
+"business_model",
+"software_tool",
+"conceptual_framework",
+"other"
+]
+},
+"uniqueItems": true
+},
+"tags": {
+"type": "array",
+"description": "Search tags for the listing.",
+"minItems": 1,
+"items": {
+"type": "string",
+"minLength": 1,
+"maxLength": 80
+},
+"uniqueItems": true
+},
+"keywords": {
+"type": "array",
+"description": "Additional search keywords.",
+"items": {
+"type": "string",
+"minLength": 1,
+"maxLength": 120
+},
+"uniqueItems": true
+},
+"language": {
+"type": "string",
+"description": "Primary language of the listed asset.",
+"pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+"examples": [
+"en",
+"ja",
+"ja-JP"
+]
+},
+"target_users": {
+"type": "array",
+"description": "Intended users or buyers of the listing.",
+"items": {
+"type": "string",
+"enum": [
+"creators",
+"developers",
+"researchers",
+"business_users",
+"educators",
+"ai_agents",
+"marketplaces",
+"protocol_maintainers",
+"other"
+]
+},
+"uniqueItems": true
+}
+}
+},
+"quality_signals": {
+"type": "object",
+"description": "Optional quality and trust signals for the marketplace listing.",
+"additionalProperties": false,
+"properties": {
+"origin_audit_record_ids": {
+"type": "array",
+"description": "Origin Audit Records associated with this listing.",
+"items": {
+"type": "string",
+"pattern": "^audit-[0-9]{4}-[0-9]{4,}$"
+},
+"uniqueItems": true
+},
+"validation_status": {
+"type": "string",
+"description": "Validation status of the listed asset.",
+"enum": [
+"not_validated",
+"schema_validated",
+"audit_validated",
+"human_reviewed",
+"disputed"
+]
+},
+"documentation_url": {
+"type": "string",
+"description": "Optional documentation URL.",
+"format": "uri"
+},
+"example_url": {
+"type": "string",
+"description": "Optional example or demo URL.",
+"format": "uri"
+}
+}
+},
+"human_review": {
+"type": "object",
+"description": "Human review boundary for the marketplace listing.",
+"required": [
+"required",
+"status"
+],
+"additionalProperties": false,
+"properties": {
+"required": {
+"type": "boolean",
+"description": "Whether human review is required before the listing becomes active."
+},
+"status": {
+"type": "string",
+"description": "Human review status.",
+"enum": [
+"not_required",
+"pending",
+"approved",
+"rejected",
+"disputed"
+]
+},
+"reviewer": {
+"type": "string",
+"description": "Optional reviewer identifier.",
+"maxLength": 200
+},
+"reviewed_at": {
+"type": "string",
+"description": "Optional timestamp when human review occurred.",
+"format": "date-time"
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable review notes.",
+"maxLength": 2000
+}
+}
+},
+"trace": {
+"type": "object",
+"description": "Trace links for the marketplace listing.",
+"required": [
+"source_url"
+],
+"additionalProperties": false,
+"properties": {
+"source_url": {
+"type": "string",
+"description": "Primary URL or repository location of the listing.",
+"format": "uri"
+},
+"repository_url": {
+"type": "string",
+"description": "Optional repository URL.",
+"format": "uri"
+},
+"listing_url": {
+"type": "string",
+"description": "Optional public marketplace listing URL.",
+"format": "uri"
+},
+"related_assets": {
+"type": "array",
+"description": "Related assets, audits, allocation graphs, protocols, repositories, or standards.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"evidence_hashes": {
+"type": "array",
+"description": "Hashes of supporting records, listing snapshots, license files, or marketplace artifacts.",
+"items": {
+"type": "string",
+"pattern": "^sha256:[a-fA-F0-9]{64}$"
+},
+"uniqueItems": true
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable notes.",
+"maxLength": 4000
+}
+}
+}
+}
+}
