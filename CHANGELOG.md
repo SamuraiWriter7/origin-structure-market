@@ -1,5 +1,133 @@
 # Changelog
 
+## [v0.3.0-candidate] - 2026-06-22
+
+### Added
+
+* Added initial **Origin Audit Record** schema.
+
+  * `schemas/origin-audit-record.schema.json`
+  * Defines the machine-readable audit format for evaluating derivative claims, similarity, contribution scores, royalty relevance, evidence, and human review boundaries.
+
+* Added initial Origin Audit Record example.
+
+  * `examples/origin-audit-record.example.yaml`
+  * Demonstrates how a derivative asset can be audited against an upstream Origin Asset.
+
+* Updated validation script.
+
+  * `scripts/validate_examples.py`
+  * Added Origin Audit Record validation target alongside Origin Asset and Derivative Asset validation.
+
+* Updated README.
+
+  * Reflects v0.3.0-candidate status.
+  * Adds Origin Audit Record schema documentation.
+  * Updates directory structure, validation output, conceptual architecture, and roadmap.
+
+---
+
+### Defined
+
+* Defined **Origin Audit Record** as a structured audit record for evaluating whether a target asset is likely derived from one or more upstream assets.
+
+* Established the v0.3 scope as:
+
+  > Origin Audit Record
+
+* Established the first verifiable lineage stack:
+
+```text
+Origin Asset
+    ↓
+Derivative Asset
+    ↓
+Origin Audit Record
+```
+
+* Defined audit fields for:
+
+  * target asset ID
+  * target asset type
+  * auditor
+  * audit method
+  * audit scope
+  * compared assets
+  * structural similarity
+  * conceptual similarity
+  * lineage similarity
+  * workflow similarity
+  * overall similarity
+  * contribution scores
+  * royalty relevance
+  * audit judgment
+  * supporting evidence
+  * human review boundary
+
+---
+
+### Validation
+
+The following validation targets are now included:
+
+```text
+Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+
+Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+
+Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+```
+
+Expected validation result:
+
+```text
+[validate] Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+[ok] Origin Asset example is valid
+[validate] Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+[ok] Derivative Asset example is valid
+[validate] Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+[ok] Origin Audit Record example is valid
+[done] all examples are valid
+```
+
+---
+
+### Notes
+
+This version upgrades Origin Structure Market from a derivative lineage protocol into an auditable lineage protocol.
+
+v0.1 answered:
+
+> What is the origin structure?
+
+v0.2 added:
+
+> What was derived from it, how, and with what claimed contribution?
+
+v0.3 adds:
+
+> How credible is the derivative claim, and what evidence supports it?
+
+This version does not yet implement executable royalty allocation, settlement logic, or marketplace listing metadata.
+
+Those layers are planned for future versions:
+
+* v0.4 — Royalty Allocation Graph
+* v0.5 — Marketplace Layer
+
+
 ## [v0.2.0-candidate] - 2026-06-22
 
 ### Added
