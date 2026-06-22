@@ -1,6 +1,6 @@
 # Origin Structure Market
 
-**Origin Structure Market** is a protocol-oriented framework for registering AI-era ideas, structures, prompts, schemas, and conceptual systems as **Origin Assets**, tracing their derivatives, auditing derivative claims, and enabling royalty allocation back to the structural origin.
+**Origin Structure Market** is a protocol-oriented framework for registering AI-era ideas, structures, prompts, schemas, workflows, and conceptual systems as **Origin Assets**, tracing their derivatives, auditing derivative claims, allocating royalties, and preparing them for marketplace listing.
 
 It is designed as an experimental standard for the AI creator economy, where value should not only accumulate at the final product or platform layer, but also flow back to the structural origin.
 
@@ -22,9 +22,11 @@ Origin Structure Market provides a machine-readable way to record:
 * what derivative assets were created from it
 * how derivative claims can be audited
 * how revenue can be allocated back to contributors
+* how assets can be listed, licensed, discovered, and monetized
 
 This project does **not** attempt to claim ownership over abstract ideas themselves.
-Instead, it records **structured origin expressions**, their fingerprints, permissions, lineage, audit evidence, and allocation paths.
+
+Instead, it records **structured origin expressions**, their fingerprints, permissions, lineage, audit evidence, allocation paths, and marketplace listing metadata.
 
 ---
 
@@ -36,14 +38,15 @@ Modern AI and platform ecosystems have a broken value loop:
 * AI-generated derivatives obscure upstream contributors
 * Platforms capture most of the value
 * Creators lose traceability once their work is transformed
-* Conceptual frameworks are difficult to register, compare, audit, and reward
+* Conceptual frameworks are difficult to register, compare, audit, reward, and list
 * Revenue distribution rarely reaches the structural origin
+* Marketplace listings often hide upstream lineage and royalty obligations
 
 In short:
 
-> Creation does not reliably lead to compensation.
+> Creation does not reliably lead to traceable compensation.
 
-Origin Structure Market addresses this by treating reusable structures, derivative lineage, audit records, and allocation graphs as first-class protocol objects.
+Origin Structure Market addresses this by treating reusable structures, derivative lineage, audit records, allocation graphs, and marketplace listings as first-class protocol objects.
 
 ---
 
@@ -165,13 +168,44 @@ Instead, it provides a machine-readable allocation graph that can be used by:
 
 ---
 
+## What Is a Marketplace Listing?
+
+A **Marketplace Listing** is a structured record for preparing an Origin Asset, Derivative Asset, final product, royalty bundle, or related structural asset for discovery, licensing, pricing, and monetization.
+
+It records:
+
+* listing ID
+* listed asset ID
+* listing type
+* marketplace-facing summary
+* long description
+* listing status
+* pricing model
+* license terms
+* royalty requirements
+* Royalty Allocation Graph reference
+* discovery metadata
+* quality signals
+* human review status
+* trace links
+
+This layer does not create a full marketplace by itself.
+
+Instead, it defines the listing metadata that a marketplace, registry, agent, or external platform can consume.
+
+In short:
+
+> v0.5 turns traceable structures into listable market records.
+
+---
+
 ## Repository Status
 
-**Version:** v0.4.0-candidate
+**Version:** v0.5.0-candidate
 **Stage:** Experimental protocol
-**Current scope:** Origin Asset registration + Derivative Asset registration + Origin Audit Record + Royalty Allocation Graph
+**Current scope:** Origin Asset registration + Derivative Asset registration + Origin Audit Record + Royalty Allocation Graph + Marketplace Listing
 
-The current version implements four core layers:
+The current version implements five core layers:
 
 ```text
 Origin Asset
@@ -181,12 +215,15 @@ Derivative Asset
 Origin Audit Record
     ↓
 Royalty Allocation Graph
+    ↓
+Marketplace Listing
 ```
 
 v0.1 established the origin registration layer.
 v0.2 added the derivative lineage layer.
 v0.3 added the origin audit layer.
-v0.4 adds the royalty allocation layer, allowing audited lineage and contribution scores to be converted into proposed revenue distribution graphs.
+v0.4 added the royalty allocation layer.
+v0.5 adds the marketplace listing layer, allowing assets and their trace, audit, license, pricing, and royalty metadata to be prepared for discovery and monetization.
 
 ---
 
@@ -200,11 +237,15 @@ v0.4 adds the royalty allocation layer, allowing audited lineage and contributio
 * YAML example for an Origin Audit Record
 * JSON Schema for Royalty Allocation Graph
 * YAML example for a Royalty Allocation Graph
+* JSON Schema for Marketplace Listing
+* YAML example for a Marketplace Listing
 * Python validation script
 * GitHub Actions workflow for CI validation
 * Protocol overview document
 * Derivative Asset registration documentation
 * Origin Audit Record documentation
+* Royalty Allocation Graph documentation
+* Marketplace Listing documentation
 
 ---
 
@@ -218,17 +259,21 @@ origin-structure-market/
 ├── docs/
 │   ├── origin-structure-market-overview.md
 │   ├── derivative-asset-registration.md
-│   └── origin-audit-record.md
+│   ├── origin-audit-record.md
+│   ├── royalty-allocation-graph.md
+│   └── marketplace-listing.md
 ├── examples/
 │   ├── origin-asset.example.yaml
 │   ├── derivative-asset.example.yaml
 │   ├── origin-audit-record.example.yaml
-│   └── royalty-allocation-graph.example.yaml
+│   ├── royalty-allocation-graph.example.yaml
+│   └── marketplace-listing.example.yaml
 ├── schemas/
 │   ├── origin-asset.schema.json
 │   ├── derivative-asset.schema.json
 │   ├── origin-audit-record.schema.json
-│   └── royalty-allocation-graph.schema.json
+│   ├── royalty-allocation-graph.schema.json
+│   └── marketplace-listing.schema.json
 ├── scripts/
 │   └── validate_examples.py
 ├── CHANGELOG.md
@@ -376,6 +421,50 @@ This transforms audited lineage into a proposed economic distribution.
 
 ---
 
+## Marketplace Listing Schema
+
+The Marketplace Listing schema is located at:
+
+```text
+schemas/marketplace-listing.schema.json
+```
+
+It defines the structure of a marketplace-facing listing record.
+
+A valid Marketplace Listing must include:
+
+* `id`
+* `title`
+* `listing_type`
+* `listed_asset`
+* `summary`
+* `timestamp`
+* `status`
+* `pricing`
+* `license`
+* `royalty`
+* `discovery`
+* `human_review`
+* `trace`
+
+The Marketplace Listing layer allows the protocol to record:
+
+* listed asset metadata
+* pricing model
+* license terms
+* royalty requirements
+* Royalty Allocation Graph references
+* discovery categories
+* search tags
+* target users
+* quality signals
+* human review status
+* marketplace trace links
+
+This transforms traceable structures into discoverable and licensable market records.
+
+---
+
 ## Validation
 
 Install dependencies:
@@ -409,6 +498,10 @@ Expected output:
   schema : schemas/royalty-allocation-graph.schema.json
   example: examples/royalty-allocation-graph.example.yaml
 [ok] Royalty Allocation Graph example is valid
+[validate] Marketplace Listing
+  schema : schemas/marketplace-listing.schema.json
+  example: examples/marketplace-listing.example.yaml
+[ok] Marketplace Listing example is valid
 [done] all examples are valid
 ```
 
@@ -443,6 +536,8 @@ Origin Audit Record
     ↓
 Royalty Allocation Graph
     ↓
+Marketplace Listing
+    ↓
 Value Returned to Origin
 ```
 
@@ -470,17 +565,23 @@ v0.4 implements:
 Royalty Allocation Graph
 ```
 
-Together, v0.1 to v0.4 establish the first verifiable economic lineage stack:
+v0.5 implements:
 
 ```text
-source structure → downstream derivative → audit record → allocation graph
+Marketplace Listing
+```
+
+Together, v0.1 to v0.5 establish the first verifiable market lineage stack:
+
+```text
+source structure → downstream derivative → audit record → allocation graph → marketplace listing
 ```
 
 ---
 
 ## Design Philosophy
 
-Origin Structure Market is based on four principles.
+Origin Structure Market is based on five principles.
 
 ### 1. Structure over content
 
@@ -494,9 +595,13 @@ The protocol focuses on traceable contribution rather than absolute ownership cl
 
 Derivative claims should be evaluated before they influence economic distribution.
 
-### 4. Flow over storage
+### 4. Allocation before settlement
 
-Value is defined by how structures move, transform, generate revenue, and return value upstream.
+Revenue should be mapped before payment systems execute settlement.
+
+### 5. Listing before market automation
+
+Marketplace records should preserve trace, license, pricing, royalty, and review metadata before automated discovery or monetization.
 
 ---
 
@@ -515,7 +620,7 @@ Origin Structure Market is designed to connect with related Kazene ecosystem pro
 Together, these projects form a broader stack for:
 
 ```text
-traceability → origin audit → contribution scoring → royalty allocation
+traceability → origin audit → contribution scoring → royalty allocation → marketplace listing
 ```
 
 ---
@@ -572,15 +677,31 @@ Implemented:
 * Preserve human review boundary
 * Add Royalty Allocation Graph validation to CI
 
-### v0.5 — Marketplace Layer
+### v0.5 — Marketplace Listing
+
+Implemented:
+
+* Define `marketplace-listing.schema.json`
+* Add marketplace listing example YAML
+* Record listed asset metadata
+* Record pricing and commercial access model
+* Record license and usage terms
+* Reference royalty allocation graph
+* Record discovery categories, tags, keywords, language, and target users
+* Record quality signals
+* Preserve human review boundary
+* Add Marketplace Listing validation to CI
+
+### v0.6 — License Template Registry
 
 Planned additions:
 
-* Define marketplace listing metadata
-* Define license templates
-* Add search and discovery fields
-* Add listing status and availability fields
-* Prepare for integration with external marketplaces or registries
+* Define reusable license template records
+* Connect license templates to Marketplace Listings
+* Add license compatibility metadata
+* Add attribution requirements
+* Add downstream commercial use rules
+* Prepare for external license registry integration
 
 ---
 
@@ -592,10 +713,11 @@ This project does not attempt to:
 * replace copyright law
 * act as a court or final dispute resolver
 * guarantee automatic royalty enforcement by itself
-* execute payments directly in v0.4
+* execute payments directly
+* run a full marketplace by itself
 * require blockchain usage in early versions
 
-Instead, it provides a structured protocol foundation for future trace, audit, allocation, and settlement systems.
+Instead, it provides a structured protocol foundation for future trace, audit, allocation, listing, licensing, and settlement systems.
 
 ---
 
@@ -606,7 +728,7 @@ License information will be defined in a future version.
 Suggested initial direction:
 
 ```text
-Kazene-Origin-License-0.1
+Kazene-Origin-Market-License-0.5
 ```
 
 or a compatible open license for experimental protocol development.
@@ -619,7 +741,7 @@ Origin Structure Market is an experimental protocol for the AI era.
 
 It asks a simple question:
 
-> What if the origin of an idea could remain traceable after AI transforms it, audits it, and monetizes it?
+> What if the origin of an idea could remain traceable after AI transforms it, audits it, monetizes it, and lists it on a marketplace?
 
 The answer is a new kind of market:
 
@@ -628,7 +750,8 @@ not only a market for finished products,
 but a market for reusable structures,
 derivative lineage,
 audit evidence,
-and royalty allocation.
+royalty allocation,
+and marketplace listing metadata.
 ```
 
 A system where:
@@ -637,6 +760,7 @@ A system where:
 * derivatives preserve lineage
 * audits evaluate contribution
 * revenue events generate allocation graphs
+* listings preserve license, pricing, discovery, and royalty metadata
 * value can flow back upstream
 * creators are recognized as structural sources
 
