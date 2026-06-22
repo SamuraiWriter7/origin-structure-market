@@ -1,5 +1,179 @@
 # Changelog
 
+## [v0.5.0-candidate] - 2026-06-22
+
+### Added
+
+* Added initial **Marketplace Listing** schema.
+
+  * `schemas/marketplace-listing.schema.json`
+  * Defines the machine-readable listing format for publishing, licensing, discovering, pricing, and monetizing origin assets, derivative assets, royalty bundles, and related structural products.
+
+* Added initial Marketplace Listing example.
+
+  * `examples/marketplace-listing.example.yaml`
+  * Demonstrates how a derivative asset can be prepared for marketplace discovery, licensing, royalty reference, quality signaling, pricing, and human review.
+
+* Updated validation script.
+
+  * `scripts/validate_examples.py`
+  * Added Marketplace Listing validation target alongside Origin Asset, Derivative Asset, Origin Audit Record, and Royalty Allocation Graph validation.
+
+* Updated README.
+
+  * Reflects v0.5.0-candidate status.
+  * Adds Marketplace Listing schema documentation.
+  * Updates directory structure, validation output, conceptual architecture, design philosophy, roadmap, non-goals, and summary.
+
+---
+
+### Defined
+
+* Defined **Marketplace Listing** as a structured record for preparing traceable assets for marketplace discovery, licensing, pricing, and monetization.
+
+* Established the v0.5 scope as:
+
+  > Marketplace Listing
+
+* Established the first verifiable market lineage stack:
+
+```text
+Origin Asset
+    ↓
+Derivative Asset
+    ↓
+Origin Audit Record
+    ↓
+Royalty Allocation Graph
+    ↓
+Marketplace Listing
+```
+
+* Defined listing fields for:
+
+  * listing ID
+  * listing title
+  * listing type
+  * listed asset reference
+  * marketplace summary
+  * description
+  * listing status
+  * pricing model
+  * currency
+  * billing period
+  * revenue share rate
+  * license name
+  * license terms
+  * commercial use permission
+  * derivative permission
+  * attribution requirement
+  * AI training permission
+  * AI inference permission
+  * royalty requirement
+  * allocation mode
+  * Royalty Allocation Graph reference
+  * discovery categories
+  * tags
+  * keywords
+  * language
+  * target users
+  * quality signals
+  * audit record references
+  * validation status
+  * documentation URL
+  * example URL
+  * human review boundary
+  * trace links
+  * evidence hashes
+
+---
+
+### Validation
+
+The following validation targets are now included:
+
+```text
+Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+
+Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+
+Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+
+Royalty Allocation Graph
+  schema : schemas/royalty-allocation-graph.schema.json
+  example: examples/royalty-allocation-graph.example.yaml
+
+Marketplace Listing
+  schema : schemas/marketplace-listing.schema.json
+  example: examples/marketplace-listing.example.yaml
+```
+
+Expected validation result:
+
+```text
+[validate] Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+[ok] Origin Asset example is valid
+[validate] Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+[ok] Derivative Asset example is valid
+[validate] Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+[ok] Origin Audit Record example is valid
+[validate] Royalty Allocation Graph
+  schema : schemas/royalty-allocation-graph.schema.json
+  example: examples/royalty-allocation-graph.example.yaml
+[ok] Royalty Allocation Graph example is valid
+[validate] Marketplace Listing
+  schema : schemas/marketplace-listing.schema.json
+  example: examples/marketplace-listing.example.yaml
+[ok] Marketplace Listing example is valid
+[done] all examples are valid
+```
+
+---
+
+### Notes
+
+This version upgrades Origin Structure Market from a trace, audit, and royalty allocation protocol into a marketplace-ready protocol.
+
+v0.1 answered:
+
+> What is the origin structure?
+
+v0.2 added:
+
+> What was derived from it, how, and with what claimed contribution?
+
+v0.3 added:
+
+> How credible is the derivative claim, and what evidence supports it?
+
+v0.4 added:
+
+> How should revenue be allocated across creators, origins, derivatives, auditors, and protocol funds?
+
+v0.5 adds:
+
+> How can a traceable asset be listed, licensed, discovered, priced, and monetized?
+
+This version does not run a full marketplace by itself.
+It defines the listing metadata that marketplaces, registries, agents, external platforms, or future smart contract systems can consume.
+
+Future planned layer:
+
+* v0.6 — License Template Registry
+
+
 ## [v0.4.0-candidate] - 2026-06-22
 
 ### Added
