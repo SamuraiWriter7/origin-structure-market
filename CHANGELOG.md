@@ -1,5 +1,115 @@
 # Changelog
 
+## [v0.2.0-candidate] - 2026-06-22
+
+### Added
+
+* Added initial **Derivative Asset** schema.
+
+  * `schemas/derivative-asset.schema.json`
+  * Defines the machine-readable registration format for downstream assets derived from one or more upstream Origin Assets or Derivative Assets.
+  * Supports upstream asset references, transformation types, contribution claims, output metadata, proposed royalty splits, trace links, and human review status.
+
+* Added initial Derivative Asset example.
+
+  * `examples/derivative-asset.example.yaml`
+  * Demonstrates how an `Origin Asset Generator GPT` can declare its upstream origin, transformation path, contribution claim, trace evidence, and proposed royalty split.
+
+* Updated validation script.
+
+  * `scripts/validate_examples.py`
+  * Added Derivative Asset validation target alongside Origin Asset validation.
+
+* Updated README.
+
+  * Reflects v0.2.0-candidate status.
+  * Adds Derivative Asset schema documentation.
+  * Updates directory structure, validation output, conceptual architecture, and roadmap.
+
+---
+
+### Defined
+
+* Defined **Derivative Asset** as a structured registration record for a downstream asset derived from upstream origin or derivative assets.
+
+* Established the v0.2 scope as:
+
+  > Derivative Asset Registration
+
+* Established the first traceable lineage structure:
+
+```text
+Origin Asset
+    ↓
+Derivative Asset
+```
+
+* Defined derivative registration fields for:
+
+  * upstream asset ID
+  * upstream asset role
+  * contribution claim
+  * transformation type
+  * shared concepts
+  * shared structure
+  * evidence hashes
+  * output asset metadata
+  * proposed royalty split
+  * human review boundary
+
+---
+
+### Validation
+
+The following validation targets are now included:
+
+```text
+Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+
+Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+```
+
+Expected validation result:
+
+```text
+[validate] Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+[ok] Origin Asset example is valid
+[validate] Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+[ok] Derivative Asset example is valid
+[done] all examples are valid
+```
+
+---
+
+### Notes
+
+This version upgrades Origin Structure Market from a simple origin registry into a derivative lineage protocol.
+
+v0.1 answered:
+
+> What is the origin structure?
+
+v0.2 adds:
+
+> What was derived from it, how, and with what claimed contribution?
+
+This version does not yet implement origin audit scoring, formal dispute resolution, or executable royalty allocation.
+
+Those layers are planned for future versions:
+
+* v0.3 — Origin Audit Record
+* v0.4 — Royalty Allocation Graph
+* v0.5 — Marketplace Layer
+
+
 All notable changes to this project will be documented in this file.
 
 This project follows a candidate-based release flow during early protocol development.
