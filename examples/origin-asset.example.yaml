@@ -1,56 +1,59 @@
 origin_asset:
-id: origin-2026-0001
-title: Origin Structure Market
-creator: SamuraiWriter7
-asset_type: ai_structure_framework
-description: >
-Origin Structure Market is a protocol-oriented framework for registering
-reusable AI-era ideas, structures, prompts, schemas, and conceptual systems
-as origin assets. It records their structural fingerprint, permissions,
-royalty policy, and trace links so that derivative works can acknowledge
-and return value to the original source.
+  id: origin-2026-0001
+  title: Origin Structure Market
+  creator: SamuraiWriter7
+  asset_type: ai_structure_framework
 
-canonical_hash: sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-timestamp: "2026-06-21T00:00:00Z"
-version: v0.1.0-candidate
-jurisdiction: global
+  description: >
+    Origin Structure Market is a protocol-oriented framework for registering
+    reusable AI-era ideas, structures, prompts, schemas, and conceptual systems
+    as origin assets. It records their structural fingerprint, permissions,
+    royalty policy, and trace links so that derivative works can acknowledge
+    and return value to the original source.
 
-license:
-name: Kazene-Origin-License-0.1
-url: https://github.com/SamuraiWriter7/origin-structure-market/blob/main/LICENSE
+  canonical_hash: sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  timestamp: "2026-06-21T00:00:00Z"
+  version: v0.1.0-candidate
+  jurisdiction: global
 
-permission:
-derivative_allowed: true
-commercial_use: true
-attribution_required: true
-ai_training_allowed: false
-ai_inference_allowed: true
-redistribution_allowed: true
+  license:
+    name: Kazene-Origin-License-0.1
+    url: https://github.com/SamuraiWriter7/origin-structure-market/blob/main/LICENSE
 
-royalty_policy:
-default_rate: 0.05
-derivative_rate: 0.03
-audit_rate: 0.01
-protocol_fund_rate: 0.01
-currency: JPY
-settlement: hybrid
+  permission:
+    derivative_allowed: true
+    commercial_use: true
+    attribution_required: true
+    ai_training_allowed: false
+    ai_inference_allowed: true
+    redistribution_allowed: true
 
-trace:
-source_url: https://github.com/SamuraiWriter7/origin-structure-market
-article_url: https://siba834.hatenablog.com/
-repository_url: https://github.com/SamuraiWriter7/origin-structure-market
-related_assets:
-- ai-search-trace-receipt-standard
-- synchronization-audit-protocol
-- compute-access-royalty-os
-- okf-royalty-os-bridge
-- kazene-trace-receipt-protocol
-evidence_hashes:
-- sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  royalty_policy:
+    default_rate: 0.05
+    derivative_rate: 0.03
+    audit_rate: 0.01
+    protocol_fund_rate: 0.01
+    currency: JPY
+    settlement: hybrid
 
-notes: >
-This example represents the first origin asset registration record for the
-Origin Structure Market. It is intended as a minimal v0.1 example for testing
-schema validation and demonstrating how an upstream structure can be recorded
-before derivative assets, origin audits, and royalty allocation graphs are
-added in later versions.
+  trace:
+    source_url: https://github.com/SamuraiWriter7/origin-structure-market
+    article_url: https://siba834.hatenablog.com/
+    repository_url: https://github.com/SamuraiWriter7/origin-structure-market
+
+    related_assets:
+      - ai-search-trace-receipt-standard
+      - synchronization-audit-protocol
+      - compute-access-royalty-os
+      - okf-royalty-os-bridge
+      - kazene-trace-receipt-protocol
+
+    evidence_hashes:
+      - sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+  notes: >
+    This example represents the first origin asset registration record for the
+    Origin Structure Market. It is intended as a minimal v0.1 example for testing
+    schema validation and demonstrating how an upstream structure can be recorded
+    before derivative assets, origin audits, and royalty allocation graphs are
+    added in later versions.
