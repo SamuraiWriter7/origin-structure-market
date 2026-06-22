@@ -63,7 +63,7 @@
 "version": {
 "type": "string",
 "description": "Version of this royalty allocation graph record.",
-"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+(-[A-Za-z0-9.-]+)?$",
 "examples": [
 "0.4.0",
 "v0.4.0-candidate"
