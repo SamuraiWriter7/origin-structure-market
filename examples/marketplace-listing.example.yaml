@@ -1,0 +1,135 @@
+marketplace_listing:
+  id: listing-2026-0001
+  title: Origin Asset Generator GPT
+  listing_type: derivative_asset
+
+  listed_asset:
+    asset_id: derivative-2026-0001
+    asset_type: derivative_asset
+    version: v0.5.0-candidate
+    canonical_hash: sha256:1111111111111111111111111111111111111111111111111111111111111111
+
+  summary: >
+    A GPT-oriented derivative asset that helps creators generate machine-readable
+    Origin Asset records, YAML examples, trace metadata, and registration-ready
+    structures for the Origin Structure Market.
+
+  description: >
+    Origin Asset Generator GPT is a derivative asset based on the Origin
+    Structure Market framework. It operationalizes the upstream origin asset
+    registration concept into a practical workflow for creators, developers,
+    and protocol maintainers who want to register AI-era structures as
+    traceable origin assets. The listing connects derivative lineage, audit
+    evidence, royalty allocation, and marketplace discovery metadata.
+
+  timestamp: "2026-06-22T00:00:00Z"
+  version: v0.5.0-candidate
+  status: pending_review
+
+  pricing:
+    pricing_model: revenue_share
+    amount: 0
+    currency: JPY
+    billing_period: none
+    revenue_share_rate: 0.10
+    notes: >
+      The listing is initially offered with no upfront purchase price, but
+      downstream commercial use may trigger royalty allocation according to
+      the referenced Royalty Allocation Graph and marketplace policy.
+
+  license:
+    license_name: Kazene-Origin-Market-License-0.5
+    license_url: https://github.com/SamuraiWriter7/origin-structure-market/blob/main/LICENSE
+    commercial_use: true
+    derivative_allowed: true
+    attribution_required: true
+    ai_training_allowed: false
+    ai_inference_allowed: true
+    redistribution_allowed: true
+    restrictions:
+      - Do not remove upstream trace references.
+      - Do not claim exclusive ownership over the underlying origin structure.
+      - Commercial derivatives should preserve royalty allocation metadata.
+
+  royalty:
+    royalty_required: true
+    allocation_mode: royalty_allocation_graph
+    royalty_allocation_graph_id: allocation-2026-0001
+    default_origin_rate: 0.05
+    default_derivative_rate: 0.07
+    protocol_fund_rate: 0.01
+    notes: >
+      Royalty distribution should reference the linked Royalty Allocation Graph.
+      The listed asset preserves upstream value flow to the origin creator,
+      derivative creator, auditor, and protocol fund.
+
+  discovery:
+    categories:
+      - gpt_instruction
+      - workflow
+      - royalty_template
+      - conceptual_framework
+    tags:
+      - origin-structure-market
+      - origin-asset
+      - derivative-asset
+      - royalty-allocation
+      - traceability
+      - creator-economy
+      - ai-provenance
+      - kazene
+    keywords:
+      - origin registration
+      - structural fingerprint
+      - derivative lineage
+      - audit-based royalty
+      - AI creator economy
+      - marketplace listing
+    language: en
+    target_users:
+      - creators
+      - developers
+      - researchers
+      - business_users
+      - ai_agents
+      - protocol_maintainers
+
+  quality_signals:
+    origin_audit_record_ids:
+      - audit-2026-0001
+    validation_status: audit_validated
+    documentation_url: https://github.com/SamuraiWriter7/origin-structure-market/blob/main/docs/royalty-allocation-graph.md
+    example_url: https://github.com/SamuraiWriter7/origin-structure-market/blob/main/examples/marketplace-listing.example.yaml
+
+  human_review:
+    required: true
+    status: pending
+    reviewer: protocol-maintainer
+    notes: >
+      Human review is required before this listing becomes active because it
+      references royalty allocation, derivative lineage, and commercial reuse
+      terms.
+
+  trace:
+    source_url: https://github.com/SamuraiWriter7/origin-structure-market
+    repository_url: https://github.com/SamuraiWriter7/origin-structure-market
+    listing_url: https://github.com/SamuraiWriter7/origin-structure-market
+    related_assets:
+      - origin-2026-0001
+      - derivative-2026-0001
+      - audit-2026-0001
+      - allocation-2026-0001
+      - ai-search-trace-receipt-standard
+      - synchronization-audit-protocol
+      - compute-access-royalty-os
+      - okf-royalty-os-bridge
+      - kazene-trace-receipt-protocol
+    evidence_hashes:
+      - sha256:2222222222222222222222222222222222222222222222222222222222222222
+
+  notes: >
+    This example demonstrates the v0.5 Marketplace Listing layer. It shows how
+    a derivative asset can be prepared for marketplace discovery, licensing,
+    pricing, royalty reference, quality signaling, and human review while
+    preserving trace links to the origin asset, derivative asset, audit record,
+    and royalty allocation graph.
