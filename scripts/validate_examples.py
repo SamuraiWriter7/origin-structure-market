@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-"""
-Validate example YAML files against their corresponding JSON Schemas.
-Supports Origin Asset, Derivative Asset, Origin Audit Record,
-and Royalty Allocation Graph.
-"""
-
 from pathlib import Path
 import json
 import sys
@@ -12,14 +5,8 @@ import sys
 import yaml
 from jsonschema import Draft202012Validator, FormatChecker
 
-# ------------------------------------------------------------
-# Root directory of the repository
-# ------------------------------------------------------------
 ROOT = Path(__file__).resolve().parents[1]
 
-# ------------------------------------------------------------
-# Validation targets
-# ------------------------------------------------------------
 VALIDATION_TARGETS = [
     {
         "name": "Origin Asset",
@@ -41,11 +28,14 @@ VALIDATION_TARGETS = [
         "schema": ROOT / "schemas" / "royalty-allocation-graph.schema.json",
         "example": ROOT / "examples" / "royalty-allocation-graph.example.yaml",
     },
+    {
+        "name": "Marketplace Listing",
+        "schema": ROOT / "schemas" / "marketplace-listing.schema.json",
+        "example": ROOT / "examples" / "marketplace-listing.example.yaml",
+    },
 ]
 
-# ------------------------------------------------------------
-# Loaders
-# ------------------------------------------------------------
+
 def load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
@@ -64,9 +54,6 @@ def load_yaml(path: Path) -> dict:
     return data
 
 
-# ------------------------------------------------------------
-# Validation logic
-# ------------------------------------------------------------
 def validate_target(name: str, schema_path: Path, example_path: Path) -> bool:
     print(f"[validate] {name}")
     print(f"  schema : {schema_path.relative_to(ROOT)}")
@@ -84,7 +71,6 @@ def validate_target(name: str, schema_path: Path, example_path: Path) -> bool:
         schema = load_json(schema_path)
         example = load_yaml(example_path)
 
-        # Validate schema itself
         Draft202012Validator.check_schema(schema)
 
         validator = Draft202012Validator(
@@ -116,9 +102,6 @@ def validate_target(name: str, schema_path: Path, example_path: Path) -> bool:
         return False
 
 
-# ------------------------------------------------------------
-# Main
-# ------------------------------------------------------------
 def main() -> int:
     all_ok = True
 
@@ -140,5 +123,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
 
