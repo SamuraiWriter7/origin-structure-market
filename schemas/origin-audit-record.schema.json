@@ -1,0 +1,412 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://samuraiwriter7.github.io/origin-structure-market/schemas/origin-audit-record.schema.json",
+"title": "Origin Audit Record",
+"description": "A machine-readable audit record for evaluating derivative claims, structural similarity, contribution scores, and human review boundaries in the Origin Structure Market.",
+"type": "object",
+"required": [
+"origin_audit_record"
+],
+"additionalProperties": false,
+"properties": {
+"origin_audit_record": {
+"type": "object",
+"required": [
+"id",
+"target_asset_id",
+"target_asset_type",
+"auditor",
+"timestamp",
+"audit_scope",
+"compared_assets",
+"similarity",
+"judgment",
+"evidence",
+"human_review"
+],
+"additionalProperties": false,
+"properties": {
+"id": {
+"type": "string",
+"description": "A unique identifier for the origin audit record.",
+"pattern": "^audit-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"audit-2026-0001"
+]
+},
+"target_asset_id": {
+"type": "string",
+"description": "Identifier of the derivative asset, marketplace listing, or final product being audited.",
+"pattern": "^(origin|derivative|product|listing)-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"derivative-2026-0001"
+]
+},
+"target_asset_type": {
+"type": "string",
+"description": "Type of asset being audited.",
+"enum": [
+"origin_asset",
+"derivative_asset",
+"marketplace_listing",
+"final_product",
+"other"
+]
+},
+"auditor": {
+"type": "string",
+"description": "Identifier, handle, name, DID, or agent ID of the auditor.",
+"minLength": 1,
+"maxLength": 200
+},
+"audit_method": {
+"type": "string",
+"description": "Method used to conduct the audit.",
+"enum": [
+"human_review",
+"ai_assisted_review",
+"multi_agent_review",
+"hybrid_review",
+"automated_similarity_check",
+"other"
+]
+},
+"timestamp": {
+"type": "string",
+"description": "Timestamp when the audit record was created.",
+"format": "date-time"
+},
+"version": {
+"type": "string",
+"description": "Version of this origin audit record.",
+"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"examples": [
+"0.3.0",
+"v0.3.0-candidate"
+]
+},
+"audit_scope": {
+"type": "array",
+"description": "Scope of the audit.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"derivative_claim",
+"origin_similarity",
+"structural_similarity",
+"conceptual_similarity",
+"contribution_score",
+"royalty_relevance",
+"dispute_review",
+"human_review_boundary",
+"other"
+]
+}
+},
+"compared_assets": {
+"type": "array",
+"description": "Assets compared against the target asset during the audit.",
+"minItems": 1,
+"items": {
+"type": "object",
+"required": [
+"asset_id",
+"asset_type",
+"relationship_claim"
+],
+"additionalProperties": false,
+"properties": {
+"asset_id": {
+"type": "string",
+"description": "Identifier of the compared upstream asset.",
+"pattern": "^(origin|derivative)-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"origin-2026-0001"
+]
+},
+"asset_type": {
+"type": "string",
+"description": "Type of the compared asset.",
+"enum": [
+"origin_asset",
+"derivative_asset",
+"reference_asset",
+"other"
+]
+},
+"title": {
+"type": "string",
+"description": "Optional human-readable title of the compared asset.",
+"maxLength": 200
+},
+"relationship_claim": {
+"type": "string",
+"description": "Claimed relationship between the compared asset and the target asset.",
+"enum": [
+"direct_origin",
+"indirect_origin",
+"intermediate_derivative",
+"reference",
+"inspiration",
+"similar_structure",
+"unrelated",
+"disputed",
+"other"
+]
+}
+}
+}
+},
+"similarity": {
+"type": "object",
+"description": "Similarity scores between the target asset and compared upstream assets.",
+"required": [
+"structural_similarity",
+"conceptual_similarity",
+"lineage_similarity",
+"overall_similarity"
+],
+"additionalProperties": false,
+"properties": {
+"lexical_similarity": {
+"type": "number",
+"description": "Surface-level textual similarity score.",
+"minimum": 0,
+"maximum": 1
+},
+"structural_similarity": {
+"type": "number",
+"description": "Similarity of architecture, sequence, fields, workflow, or structural pattern.",
+"minimum": 0,
+"maximum": 1
+},
+"conceptual_similarity": {
+"type": "number",
+"description": "Similarity of concepts, intent, abstraction, or semantic framing.",
+"minimum": 0,
+"maximum": 1
+},
+"lineage_similarity": {
+"type": "number",
+"description": "Similarity based on declared trace lineage, references, and derivation path.",
+"minimum": 0,
+"maximum": 1
+},
+"workflow_similarity": {
+"type": "number",
+"description": "Similarity of procedural workflow or operational logic.",
+"minimum": 0,
+"maximum": 1
+},
+"overall_similarity": {
+"type": "number",
+"description": "Overall similarity score after considering multiple dimensions.",
+"minimum": 0,
+"maximum": 1
+}
+}
+},
+"judgment": {
+"type": "object",
+"description": "Audit judgment about derivative likelihood, contribution scores, and review requirements.",
+"required": [
+"likely_derivative",
+"confidence",
+"contribution_scores",
+"royalty_relevance",
+"status"
+],
+"additionalProperties": false,
+"properties": {
+"likely_derivative": {
+"type": "boolean",
+"description": "Whether the target asset is judged likely to be derivative of the compared asset or assets."
+},
+"confidence": {
+"type": "number",
+"description": "Confidence score of the audit judgment.",
+"minimum": 0,
+"maximum": 1
+},
+"contribution_scores": {
+"type": "object",
+"description": "Estimated contribution scores by upstream asset ID.",
+"patternProperties": {
+"^(origin|derivative)-[0-9]{4}-[0-9]{4,}$": {
+"type": "number",
+"minimum": 0,
+"maximum": 1
+}
+},
+"additionalProperties": false
+},
+"royalty_relevance": {
+"type": "string",
+"description": "Whether this audit is relevant to future royalty allocation.",
+"enum": [
+"none",
+"low",
+"medium",
+"high",
+"critical"
+]
+},
+"status": {
+"type": "string",
+"description": "Current status of the audit judgment.",
+"enum": [
+"draft",
+"provisional",
+"accepted",
+"rejected",
+"disputed",
+"requires_human_review"
+]
+},
+"summary": {
+"type": "string",
+"description": "Short human-readable summary of the audit judgment.",
+"maxLength": 2000
+}
+}
+},
+"evidence": {
+"type": "object",
+"description": "Evidence supporting the audit judgment.",
+"required": [
+"shared_concepts",
+"shared_structure",
+"differentiating_factors"
+],
+"additionalProperties": false,
+"properties": {
+"shared_concepts": {
+"type": "array",
+"description": "Concepts shared by the target asset and compared upstream assets.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"shared_structure": {
+"type": "array",
+"description": "Structural patterns shared by the target asset and compared upstream assets.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"differentiating_factors": {
+"type": "array",
+"description": "Factors that distinguish the target asset from the compared upstream assets.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"trace_references": {
+"type": "array",
+"description": "URLs or references used as audit evidence.",
+"items": {
+"type": "string",
+"format": "uri"
+},
+"uniqueItems": true
+},
+"evidence_hashes": {
+"type": "array",
+"description": "Hashes of supporting evidence, drafts, commits, archived records, or audit artifacts.",
+"items": {
+"type": "string",
+"pattern": "^sha256:[a-fA-F0-9]{64}$"
+},
+"uniqueItems": true
+},
+"audit_notes": {
+"type": "string",
+"description": "Human-readable audit notes.",
+"maxLength": 4000
+}
+}
+},
+"human_review": {
+"type": "object",
+"description": "Human review boundary for the origin audit record.",
+"required": [
+"required",
+"status"
+],
+"additionalProperties": false,
+"properties": {
+"required": {
+"type": "boolean",
+"description": "Whether human review is required before this audit can be treated as final."
+},
+"status": {
+"type": "string",
+"description": "Human review status.",
+"enum": [
+"not_required",
+"pending",
+"approved",
+"rejected",
+"disputed"
+]
+},
+"reviewer": {
+"type": "string",
+"description": "Optional reviewer identifier.",
+"maxLength": 200
+},
+"reviewed_at": {
+"type": "string",
+"description": "Optional timestamp when human review occurred.",
+"format": "date-time"
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable review notes.",
+"maxLength": 2000
+}
+}
+},
+"trace": {
+"type": "object",
+"description": "Optional trace links for the audit record itself.",
+"additionalProperties": false,
+"properties": {
+"source_url": {
+"type": "string",
+"description": "Primary URL or repository location of the audit record.",
+"format": "uri"
+},
+"repository_url": {
+"type": "string",
+"description": "Optional repository URL.",
+"format": "uri"
+},
+"related_assets": {
+"type": "array",
+"description": "Related assets, protocols, repositories, or standards.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable notes.",
+"maxLength": 4000
+}
+}
+}
+}
+}
