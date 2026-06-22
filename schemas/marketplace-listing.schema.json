@@ -92,7 +92,7 @@
 "version": {
 "type": "string",
 "description": "Optional version of the listed asset.",
-"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+(-[A-Za-z0-9.-]+)?$",
 "examples": [
 "v0.5.0-candidate"
 ]
@@ -123,7 +123,7 @@
 "version": {
 "type": "string",
 "description": "Version of this marketplace listing record.",
-"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+(-[A-Za-z0-9.-]+)?$",
 "examples": [
 "0.5.0",
 "v0.5.0-candidate"
