@@ -20,29 +20,29 @@ derivative_asset:
       title: Origin Structure Market
       contribution_claim: 0.45
 
-  transformation_type:
-    - gpt_instruction
-    - workflow_expansion
-    - schema_application
-    - marketplace_packaging
+      transformation_type:
+        - gpt_instruction
+        - workflow_expansion
+        - schema_application
+        - marketplace_packaging
 
-  evidence:
-    shared_concepts:
-      - origin asset
-      - structural fingerprint
-      - traceable contribution
-      - royalty allocation
-      - value returned to origin
+      evidence:
+        shared_concepts:
+          - origin asset
+          - structural fingerprint
+          - traceable contribution
+          - royalty allocation
+          - value returned to origin
 
-    shared_structure:
-      - origin registration
-      - permission layer
-      - royalty policy layer
-      - trace link layer
-      - derivative lineage graph
+        shared_structure:
+          - origin registration
+          - permission layer
+          - royalty policy layer
+          - trace link layer
+          - derivative lineage graph
 
-    evidence_hashes:
-      - sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+        evidence_hashes:
+          - sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
   output:
     asset_type: custom_gpt
@@ -57,11 +57,6 @@ derivative_asset:
     auditor: 0.02
     protocol_fund: 0.01
     settlement: hybrid
-
-  notes: >
-    This proposed split gives most revenue to the final creator while
-    preserving upstream value flow to the origin creator, derivative creator,
-    auditor, and protocol maintenance fund.
 
   trace:
     source_url: https://github.com/SamuraiWriter7/origin-structure-market
@@ -89,4 +84,5 @@ derivative_asset:
     It records how a new GPT-oriented asset can declare its upstream origin,
     transformation type, contribution claim, output form, proposed royalty
     split, and trace evidence.
+
 
