@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Validate example YAML files against their corresponding JSON Schemas.
+Supports both Origin Asset and Derivative Asset examples.
 """
 
 from pathlib import Path
@@ -23,7 +24,12 @@ VALIDATION_TARGETS = [
         "name": "Origin Asset",
         "schema": ROOT / "schemas" / "origin-asset.schema.json",
         "example": ROOT / "examples" / "origin-asset.example.yaml",
-    }
+    },
+    {
+        "name": "Derivative Asset",
+        "schema": ROOT / "schemas" / "derivative-asset.schema.json",
+        "example": ROOT / "examples" / "derivative-asset.example.yaml",
+    },
 ]
 
 # ------------------------------------------------------------
@@ -123,4 +129,5 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
 
