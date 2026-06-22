@@ -1,5 +1,152 @@
 # Changelog
 
+## [v0.4.0-candidate] - 2026-06-22
+
+### Added
+
+* Added initial **Royalty Allocation Graph** schema.
+
+  * `schemas/royalty-allocation-graph.schema.json`
+  * Defines the machine-readable allocation format for converting revenue events, audited lineage, contribution scores, and allocation policy into proposed royalty distributions.
+
+* Added initial Royalty Allocation Graph example.
+
+  * `examples/royalty-allocation-graph.example.yaml`
+  * Demonstrates how revenue from a derivative asset can be allocated across the final creator, origin creator, derivative creator, auditor, and protocol fund.
+
+* Updated validation script.
+
+  * `scripts/validate_examples.py`
+  * Added Royalty Allocation Graph validation target alongside Origin Asset, Derivative Asset, and Origin Audit Record validation.
+
+* Updated README.
+
+  * Reflects v0.4.0-candidate status.
+  * Adds Royalty Allocation Graph schema documentation.
+  * Updates directory structure, validation output, conceptual architecture, design philosophy, and roadmap.
+
+---
+
+### Defined
+
+* Defined **Royalty Allocation Graph** as a structured record for translating revenue events and audited lineage into proposed royalty allocation.
+
+* Established the v0.4 scope as:
+
+  > Royalty Allocation Graph
+
+* Established the first verifiable economic lineage stack:
+
+```text
+Origin Asset
+    ↓
+Derivative Asset
+    ↓
+Origin Audit Record
+    ↓
+Royalty Allocation Graph
+```
+
+* Defined allocation fields for:
+
+  * revenue event ID
+  * revenue-generating product ID
+  * product title
+  * gross revenue
+  * net revenue
+  * revenue source
+  * allocation basis
+  * audit record references
+  * origin asset references
+  * derivative asset references
+  * contribution scores
+  * allocation policy
+  * recipient IDs
+  * recipient roles
+  * allocation rates
+  * allocation amounts
+  * settlement mechanism
+  * settlement status
+  * human review boundary
+  * trace links
+  * evidence hashes
+
+---
+
+### Validation
+
+The following validation targets are now included:
+
+```text
+Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+
+Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+
+Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+
+Royalty Allocation Graph
+  schema : schemas/royalty-allocation-graph.schema.json
+  example: examples/royalty-allocation-graph.example.yaml
+```
+
+Expected validation result:
+
+```text
+[validate] Origin Asset
+  schema : schemas/origin-asset.schema.json
+  example: examples/origin-asset.example.yaml
+[ok] Origin Asset example is valid
+[validate] Derivative Asset
+  schema : schemas/derivative-asset.schema.json
+  example: examples/derivative-asset.example.yaml
+[ok] Derivative Asset example is valid
+[validate] Origin Audit Record
+  schema : schemas/origin-audit-record.schema.json
+  example: examples/origin-audit-record.example.yaml
+[ok] Origin Audit Record example is valid
+[validate] Royalty Allocation Graph
+  schema : schemas/royalty-allocation-graph.schema.json
+  example: examples/royalty-allocation-graph.example.yaml
+[ok] Royalty Allocation Graph example is valid
+[done] all examples are valid
+```
+
+---
+
+### Notes
+
+This version upgrades Origin Structure Market from an auditable lineage protocol into a proposed economic allocation protocol.
+
+v0.1 answered:
+
+> What is the origin structure?
+
+v0.2 added:
+
+> What was derived from it, how, and with what claimed contribution?
+
+v0.3 added:
+
+> How credible is the derivative claim, and what evidence supports it?
+
+v0.4 adds:
+
+> How should revenue be allocated across the final creator, origin creator, derivative creator, auditor, and protocol fund?
+
+This version does not execute payments directly.
+It creates a structured allocation graph that can be used by off-chain accounting systems, marketplace logic, Royalty OS layers, smart contracts, or future settlement systems.
+
+Future planned layer:
+
+* v0.5 — Marketplace Layer
+
+
 ## [v0.3.0-candidate] - 2026-06-22
 
 ### Added
