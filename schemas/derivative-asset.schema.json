@@ -1,0 +1,388 @@
+{
+"$schema": "https://json-schema.org/draft/2020-12/schema",
+"$id": "https://samuraiwriter7.github.io/origin-structure-market/schemas/derivative-asset.schema.json",
+"title": "Derivative Asset",
+"description": "A machine-readable registration record for an asset derived from one or more origin assets in the Origin Structure Market.",
+"type": "object",
+"required": [
+"derivative_asset"
+],
+"additionalProperties": false,
+"properties": {
+"derivative_asset": {
+"type": "object",
+"required": [
+"id",
+"title",
+"creator",
+"asset_type",
+"description",
+"timestamp",
+"derived_from",
+"output",
+"proposed_royalty_split",
+"trace"
+],
+"additionalProperties": false,
+"properties": {
+"id": {
+"type": "string",
+"description": "A unique identifier for the derivative asset.",
+"pattern": "^derivative-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"derivative-2026-0001"
+]
+},
+"title": {
+"type": "string",
+"description": "Human-readable title of the derivative asset.",
+"minLength": 1,
+"maxLength": 200
+},
+"creator": {
+"type": "string",
+"description": "Identifier, handle, name, or DID of the derivative creator.",
+"minLength": 1,
+"maxLength": 200
+},
+"asset_type": {
+"type": "string",
+"description": "Category of the derivative asset.",
+"enum": [
+"gpt_instruction",
+"prompt_architecture",
+"ai_workflow",
+"workflow_schema",
+"trace_receipt_schema",
+"royalty_allocation_template",
+"origin_audit_rubric",
+"article_framework",
+"book_framework",
+"business_model",
+"conceptual_framework",
+"software_tool",
+"documentation",
+"marketplace_listing",
+"other"
+]
+},
+"description": {
+"type": "string",
+"description": "Short explanation of the derivative asset and how it transforms upstream origin assets.",
+"minLength": 1,
+"maxLength": 3000
+},
+"timestamp": {
+"type": "string",
+"description": "Registration timestamp of the derivative asset.",
+"format": "date-time"
+},
+"version": {
+"type": "string",
+"description": "Version of this derivative asset record.",
+"pattern": "^v?[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$",
+"examples": [
+"0.2.0",
+"v0.2.0-candidate"
+]
+},
+"derived_from": {
+"type": "array",
+"description": "Upstream origin assets or derivative assets that contributed to this asset.",
+"minItems": 1,
+"items": {
+"type": "object",
+"required": [
+"asset_id",
+"asset_role",
+"contribution_claim",
+"transformation_type"
+],
+"additionalProperties": false,
+"properties": {
+"asset_id": {
+"type": "string",
+"description": "Identifier of the upstream origin or derivative asset.",
+"pattern": "^(origin|derivative)-[0-9]{4}-[0-9]{4,}$",
+"examples": [
+"origin-2026-0001"
+]
+},
+"asset_role": {
+"type": "string",
+"description": "Role of the upstream asset in this derivative.",
+"enum": [
+"origin",
+"intermediate_derivative",
+"reference",
+"inspiration",
+"template",
+"schema",
+"workflow",
+"other"
+]
+},
+"title": {
+"type": "string",
+"description": "Optional human-readable title of the upstream asset.",
+"maxLength": 200
+},
+"contribution_claim": {
+"type": "number",
+"description": "Claimed contribution weight of the upstream asset to this derivative.",
+"minimum": 0,
+"maximum": 1
+},
+"transformation_type": {
+"type": "array",
+"description": "Types of transformation applied from the upstream asset.",
+"minItems": 1,
+"uniqueItems": true,
+"items": {
+"type": "string",
+"enum": [
+"gpt_instruction",
+"prompt_expansion",
+"workflow_expansion",
+"schema_application",
+"documentation_expansion",
+"article_conversion",
+"book_conversion",
+"software_implementation",
+"business_model_conversion",
+"conceptual_reframing",
+"marketplace_packaging",
+"translation",
+"summarization",
+"other"
+]
+}
+},
+"evidence": {
+"type": "object",
+"description": "Optional evidence supporting the derivation claim.",
+"additionalProperties": false,
+"properties": {
+"shared_concepts": {
+"type": "array",
+"description": "Shared concepts between upstream and derivative assets.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"shared_structure": {
+"type": "array",
+"description": "Shared structural patterns between upstream and derivative assets.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+},
+"evidence_hashes": {
+"type": "array",
+"description": "Hashes of supporting evidence, drafts, commits, or archived records.",
+"items": {
+"type": "string",
+"pattern": "^sha256:[a-fA-F0-9]{64}$"
+},
+"uniqueItems": true
+}
+}
+}
+}
+}
+},
+"output": {
+"type": "object",
+"description": "Output characteristics of the derivative asset.",
+"required": [
+"asset_type",
+"commercial_use"
+],
+"additionalProperties": false,
+"properties": {
+"asset_type": {
+"type": "string",
+"description": "Output asset type produced by the derivative.",
+"enum": [
+"custom_gpt",
+"gpt_instruction",
+"prompt_pack",
+"schema",
+"workflow",
+"article",
+"book",
+"software",
+"business_model",
+"documentation",
+"marketplace_listing",
+"other"
+]
+},
+"commercial_use": {
+"type": "boolean",
+"description": "Whether the derivative asset is intended for commercial use."
+},
+"distribution_channel": {
+"type": "string",
+"description": "Primary distribution channel for the derivative asset.",
+"enum": [
+"github",
+"gpt_store",
+"marketplace",
+"blog",
+"bookstore",
+"private_use",
+"hybrid",
+"unspecified"
+]
+},
+"canonical_hash": {
+"type": "string",
+"description": "Hash of the canonical expression of the derivative asset.",
+"pattern": "^sha256:[a-fA-F0-9]{64}$"
+}
+}
+},
+"proposed_royalty_split": {
+"type": "object",
+"description": "Proposed royalty allocation for revenue generated by this derivative asset.",
+"required": [
+"final_creator",
+"origin_creator",
+"derivative_creator",
+"auditor",
+"protocol_fund"
+],
+"additionalProperties": false,
+"properties": {
+"final_creator": {
+"type": "number",
+"description": "Suggested share for the final product creator.",
+"minimum": 0,
+"maximum": 1
+},
+"origin_creator": {
+"type": "number",
+"description": "Suggested share for upstream origin creators.",
+"minimum": 0,
+"maximum": 1
+},
+"derivative_creator": {
+"type": "number",
+"description": "Suggested share for derivative creators.",
+"minimum": 0,
+"maximum": 1
+},
+"auditor": {
+"type": "number",
+"description": "Suggested share for origin auditors or evaluators.",
+"minimum": 0,
+"maximum": 1
+},
+"protocol_fund": {
+"type": "number",
+"description": "Suggested share for protocol maintenance or commons funding.",
+"minimum": 0,
+"maximum": 1
+},
+"settlement": {
+"type": "string",
+"description": "Preferred settlement mechanism.",
+"enum": [
+"off_chain",
+"on_chain",
+"hybrid",
+"unspecified"
+]
+},
+"notes": {
+"type": "string",
+"description": "Optional notes on the proposed royalty split.",
+"maxLength": 2000
+}
+}
+},
+"trace": {
+"type": "object",
+"description": "Trace links and references supporting the derivative record.",
+"required": [
+"source_url"
+],
+"additionalProperties": false,
+"properties": {
+"source_url": {
+"type": "string",
+"description": "Primary URL or repository location of the derivative asset.",
+"format": "uri"
+},
+"repository_url": {
+"type": "string",
+"description": "Optional repository URL.",
+"format": "uri"
+},
+"article_url": {
+"type": "string",
+"description": "Optional explanatory article URL.",
+"format": "uri"
+},
+"gpt_url": {
+"type": "string",
+"description": "Optional GPT or agent URL related to the derivative asset.",
+"format": "uri"
+},
+"related_assets": {
+"type": "array",
+"description": "Related assets, protocols, repositories, or standards.",
+"items": {
+"type": "string",
+"minLength": 1
+},
+"uniqueItems": true
+}
+}
+},
+"human_review": {
+"type": "object",
+"description": "Optional human review boundary for the derivative registration.",
+"additionalProperties": false,
+"properties": {
+"required": {
+"type": "boolean",
+"description": "Whether human review is required before accepting the derivative claim."
+},
+"status": {
+"type": "string",
+"description": "Review status of the derivative registration.",
+"enum": [
+"not_required",
+"pending",
+"approved",
+"rejected",
+"disputed"
+]
+},
+"reviewer": {
+"type": "string",
+"description": "Optional reviewer identifier.",
+"maxLength": 200
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable review notes.",
+"maxLength": 2000
+}
+}
+},
+"notes": {
+"type": "string",
+"description": "Optional human-readable notes.",
+"maxLength": 4000
+}
+}
+}
+}
+}
