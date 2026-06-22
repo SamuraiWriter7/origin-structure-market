@@ -58,6 +58,11 @@ derivative_asset:
     protocol_fund: 0.01
     settlement: hybrid
 
+  notes: >
+    This proposed split gives most revenue to the final creator while
+    preserving upstream value flow to the origin creator, derivative creator,
+    auditor, and protocol maintenance fund.
+
   trace:
     source_url: https://github.com/SamuraiWriter7/origin-structure-market
     repository_url: https://github.com/SamuraiWriter7/origin-structure-market
@@ -84,3 +89,4 @@ derivative_asset:
     It records how a new GPT-oriented asset can declare its upstream origin,
     transformation type, contribution claim, output form, proposed royalty
     split, and trace evidence.
+
